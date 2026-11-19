@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Emmanuel Ivan Bernardo: aspiring QA tester and IDEA Ctrl champion. I find what breaks, before your users do.">
+    <title>Emmanuel Ivan Bernardo · QA Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Scroll progress, styled like a test run -->
+    <div class="progress" aria-hidden="true">
+      <div class="progress-bar" id="progress-bar"></div>
+      <span class="progress-label" id="progress-label">Running portfolio · 0/6</span>
+    </div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="name" href="#top">Emmanuel Ivan Bernardo</a>
+        <nav aria-label="Main">
+          <ul class="nav-list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#awards">Awards</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- 1. HERO -->
+      <section id="top" class="hero container" data-step="1">
+        <div class="hero-text">
+          <p class="label">TC-001 · Aspiring QA tester · Security-minded</p>
+          <h1>I find what <span class="break-word">breaks</span>, before your users do.</h1>
+          <p class="lead">
+            Math student at Bulacan State University and IDEA Ctrl champion. I test apps,
+            think like an attacker, and turn raw data into clear findings.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">View test reports</a>
+            <a class="button secondary" href="#contact">Contact me</a>
+          </div>
+        </div>
+
+        <!-- Signature element: a test run about me. Fully readable without JavaScript. -->
+        <figure class="terminal" aria-label="Test run: 4 checks about Emmanuel, all passed">
+          <div class="terminal-bar" aria-hidden="true">
+            <span></span><span></span><span></span>
+            <p>emmanuel.spec.js</p>
+          </div>
+          <pre class="terminal-body"><code><span class="t-line t-cmd">$ npx test emmanuel.spec</span>
+<span class="t-line"><span class="t-pass">✓</span> finds edge cases others miss</span>
+<span class="t-line"><span class="t-pass">✓</span> thinks like an attacker</span>
+<span class="t-line"><span class="t-pass">✓</span> turns raw data into findings</span>
+<span class="t-line"><span class="t-pass">✓</span> checks AI's work, not just uses it</span>
+<span class="t-line t-summary">4 passed · 0 failed · ready for QA</span></code></pre>
+        </figure>
+      </section>
+
+      <!-- 2. ABOUT -->
+      <section id="about" class="section container reveal" data-step="2">
+        <p class="section-label">01 / About</p>
+        <div class="about-grid">
+          <p class="about-text">
+            I'm a 3rd-year BS Mathematics student majoring in Computer Science. Math taught me to
+            question every assumption, and testing is where I use that most: I like finding the
+            case nobody thought of. I build with AI tools, and I've learned that checking their
+            work carefully matters as much as building fast.
+          </p>
+          <dl class="facts">
+            <div><dt>Based in</dt><dd>Bulacan, Philippines</dd></div>
+            <div><dt>Studying</dt><dd>BS Mathematics, Computer Science</dd></div>
+            <div><dt>Focus</dt><dd>QA testing, security, data analysis</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 3. PROJECTS AS TEST REPORTS -->
+      <section id="projects" class="section container" data-step="3">
+        <p class="section-label reveal">02 / Projects, written as test reports</p>
+
+        <article class="report reveal">
+          <header class="report-head">
+            <h2>CampusFind: access control test</h2>
+            <span class="status pass">Pass</span>
+          </header>
+          <p class="report-intro">
+            A lost-and-found Android app for the BulSU College of Science. I led the project
+            and tested who can see private data.
+          </p>
+          <dl class="report-rows">
+            <div><dt>Scope</dt><dd>Separate clerk and student accounts, repeated test rounds</dd></div>
+            <div><dt>Expected</dt><dd>Pickup code visible only to the approved claimant and the clerk</dd></div>
+            <div><dt>Actual</dt><dd>No leaks found across posting, claiming, approving and pickup</dd></div>
+          </dl>
+          <details class="full-report">
+            <summary>View full report</summary>
+            <ol class="steps">
+              <li>Logged in as a student and posted a found item with hidden details.</li>
+              <li>Logged in as a second student and claimed it using the hidden details.</li>
+              <li>Logged in as the clerk and approved the claim, generating a pickup code.</li>
+              <li>Checked that the claimant and the clerk could see the code.</li>
+              <li>Logged in as other students, including ones who had posted items, and confirmed the code never appeared.</li>
+              <li>Repeated the rounds several times with different items.</li>
+            </ol>
+          </details>
+          <div class="report-foot">
+            <ul class="tags" aria-label="Tools">
+              <li>Kotlin</li><li>Firebase</li><li>Manual testing</li><li>AI-assisted</li>
+            </ul>
+            <a class="text-link" href="https://github.com/senju-zei/campus-find">View code on GitHub</a>
+          </div>
+        </article>
+
+        <article class="report reveal">
+          <header class="report-head">
+            <h2>LAPIT: finding the real cause</h2>
+            <span class="status champion">Champion</span>
+          </header>
+          <p class="report-intro">
+            IDEA Ctrl: CBMS Innovation Challenge 2026. Our team had 2 days to turn raw PSA
+            community data into a proposal. I was the data analyst.
+          </p>
+          <dl class="report-rows">
+            <div><dt>Scope</dt><dd>PSA 2024 CBMS data for all 51 barangays of Malolos</dd></div>
+            <div><dt>Finding</dt><dd>59% of households in Barangay Bangkal were offline despite having cellphone signal</dd></div>
+            <div><dt>Root cause</dt><dd>Cost, not coverage</dd></div>
+          </dl>
+          <details class="full-report">
+            <summary>View full report</summary>
+            <ol class="steps">
+              <li>Compared 9 deprivation indicators across all 51 barangays; Bangkal ranked worst by a wide margin.</li>
+              <li>Noticed the barangay had cellphone signal, so missing coverage couldn't explain 59% of homes being offline.</li>
+              <li>Concluded cost was the likely barrier, tied to the 2005 relocation that moved families far from their jobs.</li>
+              <li>The team proposed LAPIT: a barangay work hub with free Wi-Fi, job training and matching, and a food-aid bridge.</li>
+            </ol>
+          </details>
+          <div class="report-foot">
+            <ul class="tags" aria-label="Skills">
+              <li>Data analysis</li><li>Research</li><li>Pitching</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="report reveal">
+          <header class="report-head">
+            <h2>CTrue: bias-free hiring concept</h2>
+            <span class="status mockup">Mock-up</span>
+          </header>
+          <p class="report-intro">
+            Silicon Valley Informal Hackathon. My idea: applicants take monitored, role-based
+            skill checks, and employers see strengths and weaknesses by candidate ID only,
+            hiding name, school and nationality.
+          </p>
+          <dl class="report-rows">
+            <div><dt>My role</dt><dd>Idea owner, logo and UI/UX design</dd></div>
+            <div><dt>Status</dt><dd>Static clickable mock-up for the demo, not deployed</dd></div>
+          </dl>
+          <div class="report-foot">
+            <ul class="tags" aria-label="Skills">
+              <li>UI/UX</li><li>Figma</li><li>AI-assisted</li>
+            </ul>
+            <a class="text-link" href="https://drive.google.com/drive/folders/12bDjslDwPS8wVW2C4FF5KBVAPuTs-OBn?usp=sharing">View demo mock-up</a>
+          </div>
+        </article>
+      </section>
+
+      <!-- 4. AWARDS AND CERTIFICATES -->
+      <section id="awards" class="section container" data-step="4">
+        <p class="section-label reveal">03 / Awards and certificates</p>
+
+        <div class="bento">
+          <article class="tile tile-hero reveal">
+            <img src="images/psa-champion.webp" alt="Emmanuel holding his IDEA Ctrl certificate next to the Champion plaque from the Philippine Statistics Authority" width="1000" height="1333" loading="lazy">
+            <div class="tile-text">
+              <span class="status champion">Champion</span>
+              <h3>IDEA Ctrl: CBMS Innovation Challenge 2026</h3>
+              <p>Philippine Statistics Authority, Regional Office III · Oct 29, 2026</p>
+            </div>
+          </article>
+
+          <article class="tile reveal">
+            <img src="images/psa-team.webp" alt="The IDEA Ctrl Champion plaque surrounded by the team's certificates" width="1000" height="1333" loading="lazy">
+            <div class="tile-text">
+              <h3>Team Lubacan</h3>
+              <p>The Champion plaque with our team's certificates, for creative, data-driven use of CBMS data.</p>
+            </div>
+          </article>
+
+          <article class="tile tile-wide reveal">
+            <button type="button" class="cert-open" data-full="images/cert-best-technical.webp" data-title="Certificate of Excellence: Best Technical Implementation">
+              <img src="images/cert-best-technical.webp" alt="Certificate of Excellence for Best Technical Implementation" width="1287" height="909" loading="lazy">
+            </button>
+            <div class="tile-text">
+              <span class="status pass">Award</span>
+              <h3>Best Technical Implementation</h3>
+              <p>Claude Code hackathon, Computer Science Society, BulSU · Feb 2026 · team Caddies (Control + Alt + Delete)</p>
+            </div>
+          </article>
+        </div>
+
+        <h3 class="sub-heading reveal">Certificates <span>(click to view)</span></h3>
+        <ul class="cert-grid reveal">
+          <li>
+            <button type="button" class="cert-open" data-full="images/cert-cybersecurity.webp" data-title="The Cybersecurity Landscape · DICT via Cisco NetAcad">
+              <img src="images/cert-cybersecurity.webp" alt="" width="1287" height="910" loading="lazy">
+              <span class="cert-name">The Cybersecurity Landscape</span>
+              <span class="cert-meta">DICT · Cisco NetAcad · Aug 2026</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="cert-open" data-full="images/cert-modern-ai.webp" data-title="Introduction to Modern AI · DICT via Cisco NetAcad">
+              <img src="images/cert-modern-ai.webp" alt="" width="1287" height="910" loading="lazy">
+              <span class="cert-name">Introduction to Modern AI</span>
+              <span class="cert-meta">DICT · Cisco NetAcad · Aug 2026</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="cert-open" data-full="images/cert-agentblazer.webp" data-title="Salesforce Agentblazer Champion Workshop (completion)">
+              <img src="images/cert-agentblazer.webp" alt="" width="1400" height="990" loading="lazy">
+              <span class="cert-name">Agentblazer Champion Workshop</span>
+              <span class="cert-meta">Salesforce × SmartBridge · completion · Sep 2025</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="cert-open" data-full="images/cert-psa-participation.webp" data-title="CBMS KomuniAksyon InfoSession · PSA">
+              <img src="images/cert-psa-participation.webp" alt="" width="1243" height="868" loading="lazy">
+              <span class="cert-name">CBMS KomuniAksyon InfoSession</span>
+              <span class="cert-meta">PSA RSSO III · participation · Oct 2026</span>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 5. EVENTS -->
+      <section class="section container" data-step="5" aria-labelledby="events-title">
+        <p class="section-label reveal" id="events-title">04 / On the ground</p>
+        <div class="gallery reveal">
+          <figure>
+            <img src="images/devcamp-group.webp" alt="Participants posing together on stage at DevCamp Manila 2026" width="1000" height="1333" loading="lazy">
+            <figcaption>DevCamp Manila 2026 Hackathon, where I handled front end and UI/UX</figcaption>
+          </figure>
+          <figure>
+            <img src="images/devcamp-team.webp" alt="Group selfie with fellow participants and mentors at DevCamp Manila 2026" width="1000" height="1333" loading="lazy">
+            <figcaption>With fellow builders and mentors at DevCamp Manila 2026</figcaption>
+          </figure>
+        </div>
+        <ul class="stats reveal">
+          <li><span class="stat-number">2</span><span class="stat-label">Awards</span></li>
+          <li><span class="stat-number">3</span><span class="stat-label">Hackathons</span></li>
+          <li><span class="stat-number">51</span><span class="stat-label">Barangays analyzed</span></li>
+          <li><span class="stat-number">5</span><span class="stat-label">Certificates</span></li>
+        </ul>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="section container reveal" aria-labelledby="skills-title">
+        <p class="section-label" id="skills-title">05 / Skills, honestly labeled</p>
+        <dl class="skills">
+          <div><dt>Testing</dt><dd>Manual testing of user roles and access with multiple accounts</dd></div>
+          <div><dt>Web</dt><dd>HTML, CSS (basic)</dd></div>
+          <div><dt>Learning now</dt><dd>Test case design, bug reporting, Playwright, JavaScript, web security basics</dd></div>
+          <div><dt>Also</dt><dd>Data analysis, Figma, UI/UX, AI-assisted development</dd></div>
+        </dl>
+      </section>
+    </main>
+
+    <!-- 6. CONTACT -->
+    <footer id="contact" class="site-footer" data-step="6">
+      <div class="container reveal">
+        <p class="section-label">06 / Contact</p>
+        <p class="contact-line">Let's test something together.</p>
+        <div class="contact-actions">
+          <a class="button primary" href="mailto:emmanivan777@gmail.com">Email me</a>
+          <button type="button" class="button secondary" id="copy-email" data-email="emmanivan777@gmail.com">Copy email</button>
+          <a class="text-link" href="https://github.com/senju-zei" rel="me">GitHub</a>
+          <a class="text-link" href="https://www.linkedin.com/in/emmanuel-ivan-bernardo-8b982b3b2/" rel="me">LinkedIn</a>
+        </div>
+        <p class="copy-status" id="copy-status" role="status"></p>
+        <p class="credit">Designed and built with AI tools, then tested by me. © 2026 Emmanuel Ivan Bernardo.</p>
+      </div>
+    </footer>
+
+    <!-- Certificate viewer (native dialog: Esc closes it, focus is handled by the browser) -->
+    <dialog class="viewer" id="viewer" aria-labelledby="viewer-title">
+      <div class="viewer-head">
+        <p id="viewer-title"></p>
+        <button type="button" class="viewer-close" id="viewer-close" aria-label="Close">✕</button>
+      </div>
+      <img id="viewer-img" alt="">
+    </dialog>
+  </body>
+</html>

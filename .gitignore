@@ -1,0 +1,5 @@
+# Personal documents and OS clutter
+*.docx
+*.pdf
+Thumbs.db
+.DS_Store
