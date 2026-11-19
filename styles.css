@@ -126,6 +126,8 @@ img {
 }
 
 .progress-label {
+  margin: 0;
+  z-index: 15;
   position: fixed;
   right: 1rem;
   bottom: 1rem;
@@ -605,7 +607,7 @@ img {
 /* Event photos */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
   gap: 1.25rem;
   align-items: start;
   margin-bottom: 2rem;
@@ -731,8 +733,224 @@ img {
   object-fit: contain;     /* the whole certificate always fits */
 }
 
+/* ---------- Multi-page additions ---------- */
+
+/* Current page in the navigation */
+.nav-list a[aria-current="page"] {
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.45em;
+}
+
+/* Portrait in the hero: full photo, no cropping */
+.hero-photo {
+  margin: 0;
+  justify-self: end;
+  width: 100%;
+  max-width: 24rem;
+  position: relative;
+  animation: rise 0.7s var(--ease) 0.15s both;
+}
+
+.hero-photo::before {
+  content: "";
+  position: absolute;
+  inset: 1rem -1rem -1rem 1rem;
+  background: var(--accent-soft);
+  border-radius: var(--radius);
+}
+
+.hero-photo img {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+/* Page titles on Projects and Awards */
+.page-head {
+  padding-block: 4rem 2rem;
+}
+
+.page-head h1 {
+  font-size: clamp(2.2rem, 1.4rem + 3.4vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.page-head .lead {
+  margin-bottom: 0;
+}
+
+.section-intro {
+  margin: -0.5rem 0 1.5rem;
+  color: var(--muted);
+}
+
+.hint {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+/* "Read the full test report" looks like a button */
+.full-report summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  border: 1.5px solid var(--accent);
+  border-radius: 8px;
+  color: var(--accent);
+  list-style: none;
+}
+
+.full-report summary::-webkit-details-marker {
+  display: none;
+}
+
+.full-report summary::before {
+  content: "▸";
+  transition: transform 0.2s var(--ease);
+}
+
+.full-report[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.full-report summary:hover {
+  background: var(--accent-soft);
+}
+
+/* Proof / demo buttons: the most visible thing on each card */
+.proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed var(--border);
+}
+
+.proof-button {
+  display: inline-grid;
+  gap: 0.1rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--bg);
+  text-decoration: none;
+  box-shadow: 0 6px 18px -8px var(--accent);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s;
+}
+
+.proof-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px -10px var(--accent);
+}
+
+.proof-kicker {
+  font-family: Consolas, "Cascadia Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.proof-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+/* Big "Next page" link at the bottom of each page */
+.page-next {
+  padding-block: 3rem 5rem;
+}
+
+.page-next a {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1.75rem 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-size: clamp(1.6rem, 1.2rem + 2vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  transition: border-color 0.25s, transform 0.25s var(--ease);
+}
+
+.page-next a span {
+  font-family: Consolas, "Cascadia Mono", monospace;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.page-next a:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* Thank-you page: message in the middle, contacts at the bottom */
+.thanks {
+  min-height: calc(100vh - 4rem);
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.thanks-message {
+  align-self: center;
+  padding-block: 4rem;
+}
+
+.thanks-message h1 {
+  font-size: clamp(3.5rem, 2rem + 8vw, 8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  animation: rise 0.8s var(--ease) both;
+}
+
+.thanks-sub {
+  max-width: 52ch;
+  margin: 0;
+  font-size: 1.2rem;
+  /* The low-opacity line under "Thank you". Faded through the color, not `opacity`,
+     so the fade-in animation (which animates opacity) can't override it. */
+  color: color-mix(in srgb, var(--text) 50%, transparent);
+  animation: rise 0.8s var(--ease) 0.2s both;
+}
+
+.thanks-contact {
+  padding-block: 2rem 2.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.thanks-contact .credit {
+  margin-top: 1.5rem;
+}
+
 /* Phones and small tablets */
 @media (max-width: 800px) {
+  .hero-photo {
+    order: -1;
+    justify-self: start;
+    max-width: 15rem;
+  }
+
+  .proof-button {
+    width: 100%;
+  }
+
   .hero,
   .about-grid,
   .bento,

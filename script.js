@@ -1,15 +1,17 @@
-// script.js — small features, each one works without the others:
+// script.js — shared by all 4 pages. Each feature checks that its elements exist,
+// so one script works on every page:
 //   1. Sections fade in as you scroll
-//   2. The hero test run "types" line by line
-//   3. Progress bar: "Running portfolio · 3/6"
-//   4. Certificate viewer
-//   5. Copy email
+//   2. The test run "types" line by line (Home page)
+//   3. Progress: a scroll bar + "Running portfolio · page 2/4"
+//   4. Certificate viewer (Awards page)
+//   5. "Email me" copies the address (Contact page)
 
 // Tells the CSS that JavaScript runs, so it may hide things until they animate in.
 // Without JavaScript, everything simply stays visible.
 document.documentElement.classList.add("js");
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const TOTAL_PAGES = 4;
 
 // ---------- 1. Reveal on scroll ----------
 const revealItems = document.querySelectorAll(".reveal");
@@ -32,65 +34,77 @@ if ("IntersectionObserver" in window) {
 }
 
 // ---------- 2. Terminal typing ----------
-const lines = document.querySelectorAll(".t-line");
-lines.forEach((line, i) => {
-  const delay = reducedMotion ? 0 : 400 + i * 380;
+document.querySelectorAll(".t-line").forEach((line, i) => {
+  const delay = reducedMotion ? 0 : 500 + i * 380;
   setTimeout(() => line.classList.add("is-typed"), delay);
 });
 
-// ---------- 3. Test-run progress ----------
+// ---------- 3. Progress ----------
 const bar = document.querySelector("#progress-bar");
 const label = document.querySelector("#progress-label");
-const steps = [...document.querySelectorAll("[data-step]")];
+const page = Number(document.body.dataset.page) || 1;
 
-function updateProgress() {
+if (label) {
+  label.textContent = page === TOTAL_PAGES
+    ? `✓ ${TOTAL_PAGES}/${TOTAL_PAGES} passed`
+    : `Running portfolio · page ${page}/${TOTAL_PAGES}`;
+}
+
+function updateBar() {
+  if (!bar) return;
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;
   const ratio = scrollable > 0 ? window.scrollY / scrollable : 1;
   bar.style.transform = `scaleX(${ratio})`;
-
-  // A step counts as "passed" once its top has scrolled above the middle of the screen
-  const passed = steps.filter((s) => s.getBoundingClientRect().top < window.innerHeight * 0.6).length;
-  label.textContent = passed >= steps.length
-    ? `✓ ${steps.length}/${steps.length} passed`
-    : `Running portfolio · ${passed}/${steps.length}`;
 }
 
-window.addEventListener("scroll", updateProgress, { passive: true });
-window.addEventListener("resize", updateProgress);
-updateProgress();
+window.addEventListener("scroll", updateBar, { passive: true });
+window.addEventListener("resize", updateBar);
+updateBar();
 
 // ---------- 4. Certificate viewer ----------
 const viewer = document.querySelector("#viewer");
-const viewerImg = document.querySelector("#viewer-img");
-const viewerTitle = document.querySelector("#viewer-title");
 
-document.querySelectorAll(".cert-open").forEach((button) => {
-  button.addEventListener("click", () => {
-    viewerImg.src = button.dataset.full;
-    viewerImg.alt = button.dataset.title;
-    viewerTitle.textContent = button.dataset.title;
-    viewer.showModal(); // native modal: traps focus, Esc closes it
+if (viewer) {
+  const viewerImg = document.querySelector("#viewer-img");
+  const viewerTitle = document.querySelector("#viewer-title");
+
+  document.querySelectorAll(".cert-open").forEach((button) => {
+    button.addEventListener("click", () => {
+      viewerImg.src = button.dataset.full;
+      viewerImg.alt = button.dataset.title;
+      viewerTitle.textContent = button.dataset.title;
+      viewer.showModal(); // native modal: traps focus, Esc closes it
+    });
   });
-});
 
-document.querySelector("#viewer-close").addEventListener("click", () => viewer.close());
+  document.querySelector("#viewer-close").addEventListener("click", () => viewer.close());
 
-// Clicking the dark area outside the certificate closes it too
-viewer.addEventListener("click", (event) => {
-  if (event.target === viewer) viewer.close();
-});
+  // Clicking the dark area outside the certificate closes it too
+  viewer.addEventListener("click", (event) => {
+    if (event.target === viewer) viewer.close();
+  });
+}
 
-// ---------- 5. Copy email ----------
-const copyButton = document.querySelector("#copy-email");
-const copyStatus = document.querySelector("#copy-status");
+// ---------- 5. "Email me" copies the address ----------
+const emailButton = document.querySelector("#email-button");
 
-copyButton.addEventListener("click", async () => {
-  const email = copyButton.dataset.email;
-  try {
-    await navigator.clipboard.writeText(email);
-    copyStatus.textContent = "Email copied: " + email;
-  } catch {
-    copyStatus.textContent = "Copy this address: " + email;
-  }
-  setTimeout(() => (copyStatus.textContent = ""), 4000);
-});
+if (emailButton) {
+  const status = document.querySelector("#copy-status");
+  const originalText = emailButton.textContent;
+
+  emailButton.addEventListener("click", async () => {
+    const email = emailButton.dataset.email;
+    try {
+      await navigator.clipboard.writeText(email);
+      emailButton.textContent = "✓ Email copied";
+      status.textContent = `Copied ${email}. Paste it into your email app.`;
+    } catch {
+      // Clipboard can be blocked; show the address so it can still be copied by hand
+      status.textContent = `My email: ${email}`;
+    }
+    setTimeout(() => {
+      emailButton.textContent = originalText;
+      status.textContent = "";
+    }, 5000);
+  });
+}

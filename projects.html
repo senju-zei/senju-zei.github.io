@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Projects by Emmanuel Ivan Bernardo, written as test reports.">
+    <title>Projects · Emmanuel Ivan Bernardo</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body data-page="2">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="progress" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
+    <p class="progress-label" id="progress-label" aria-hidden="true"></p>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="name" href="index.html">Emmanuel Ivan Bernardo</a>
+        <nav aria-label="Main">
+          <ul class="nav-list">
+            <li><a href="index.html">About</a></li>
+            <li><a href="projects.html" aria-current="page">Projects</a></li>
+            <li><a href="awards.html">Awards</a></li>
+            <li><a href="thanks.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="container">
+      <header class="page-head">
+        <p class="label">TC-002 · Projects</p>
+        <h1>Projects, written as test reports.</h1>
+        <p class="lead">What I set out to check, what I expected, and what actually happened.</p>
+      </header>
+
+      <article class="report reveal">
+        <header class="report-head">
+          <h2>CampusFind: access control test</h2>
+          <span class="status pass">Pass</span>
+        </header>
+        <p class="report-intro">
+          A lost-and-found Android app for the BulSU College of Science. I led the project
+          and tested who can see private data.
+        </p>
+        <dl class="report-rows">
+          <div><dt>Scope</dt><dd>Separate clerk and student accounts, repeated test rounds</dd></div>
+          <div><dt>Expected</dt><dd>Pickup code visible only to the approved claimant and the clerk</dd></div>
+          <div><dt>Actual</dt><dd>No leaks found across posting, claiming, approving and pickup</dd></div>
+        </dl>
+        <details class="full-report">
+          <summary>Read the full test report</summary>
+          <ol class="steps">
+            <li>Logged in as a student and posted a found item with hidden details.</li>
+            <li>Logged in as a second student and claimed it using the hidden details.</li>
+            <li>Logged in as the clerk and approved the claim, generating a pickup code.</li>
+            <li>Checked that the claimant and the clerk could see the code.</li>
+            <li>Logged in as other students, including ones who had posted items, and confirmed the code never appeared.</li>
+            <li>Repeated the rounds several times with different items.</li>
+          </ol>
+        </details>
+        <div class="proof">
+          <a class="proof-button" href="https://github.com/senju-zei/campus-find">
+            <span class="proof-kicker">Proof</span>
+            <span class="proof-title">View the code on GitHub ↗</span>
+          </a>
+          <ul class="tags" aria-label="Tools">
+            <li>Kotlin</li><li>Firebase</li><li>Manual testing</li><li>AI-assisted</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="report reveal">
+        <header class="report-head">
+          <h2>LAPIT: finding the real cause</h2>
+          <span class="status champion">Champion</span>
+        </header>
+        <p class="report-intro">
+          IDEA Ctrl: CBMS Innovation Challenge 2026. Our team had 2 days to turn raw PSA
+          community data into a proposal. I was the data analyst.
+        </p>
+        <dl class="report-rows">
+          <div><dt>Scope</dt><dd>PSA 2024 CBMS data for all 51 barangays of Malolos</dd></div>
+          <div><dt>Finding</dt><dd>59% of households in Barangay Bangkal were offline despite having cellphone signal</dd></div>
+          <div><dt>Root cause</dt><dd>Cost, not coverage</dd></div>
+        </dl>
+        <details class="full-report">
+          <summary>Read the full test report</summary>
+          <ol class="steps">
+            <li>Compared 9 deprivation indicators across all 51 barangays; Bangkal ranked worst by a wide margin.</li>
+            <li>Noticed the barangay had cellphone signal, so missing coverage couldn't explain 59% of homes being offline.</li>
+            <li>Concluded cost was the likely barrier, tied to the 2005 relocation that moved families far from their jobs.</li>
+            <li>The team proposed LAPIT: a barangay work hub with free Wi-Fi, job training and matching, and a food-aid bridge.</li>
+          </ol>
+        </details>
+        <div class="proof">
+          <a class="proof-button" href="awards.html">
+            <span class="proof-kicker">Proof</span>
+            <span class="proof-title">See the Champion plaque →</span>
+          </a>
+          <ul class="tags" aria-label="Skills">
+            <li>Data analysis</li><li>Research</li><li>Pitching</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="report reveal">
+        <header class="report-head">
+          <h2>CTrue: bias-free hiring concept</h2>
+          <span class="status mockup">Mock-up</span>
+        </header>
+        <p class="report-intro">
+          Silicon Valley Informal Hackathon. My idea: applicants take monitored, role-based
+          skill checks, and employers see strengths and weaknesses by candidate ID only,
+          hiding name, school and nationality.
+        </p>
+        <dl class="report-rows">
+          <div><dt>My role</dt><dd>Idea owner, logo and UI/UX design</dd></div>
+          <div><dt>Status</dt><dd>Static clickable mock-up for the demo, not deployed</dd></div>
+        </dl>
+        <div class="proof">
+          <a class="proof-button" href="https://drive.google.com/drive/folders/12bDjslDwPS8wVW2C4FF5KBVAPuTs-OBn?usp=sharing">
+            <span class="proof-kicker">Demo</span>
+            <span class="proof-title">Watch the mock-up demo ↗</span>
+          </a>
+          <ul class="tags" aria-label="Skills">
+            <li>UI/UX</li><li>Figma</li><li>AI-assisted</li>
+          </ul>
+        </div>
+      </article>
+
+      <nav class="page-next reveal" aria-label="Next page">
+        <a href="awards.html"><span>Next</span>Awards →</a>
+      </nav>
+    </main>
+  </body>
+</html>
